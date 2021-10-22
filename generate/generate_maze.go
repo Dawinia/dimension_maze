@@ -1,27 +1,27 @@
 package generate
 
 import (
-	"dimension_maze/model"
+	"dimension_maze/model/maze"
 	"math/rand"
 )
 
-func Generate(height, width int, wpCount int) [][]model.Maze {
-	maze := make([][]model.Maze, 0, height)
+func Generate(height, width int, wpCount int) [][]maze.Maze {
+	newMaze := make([][]maze.Maze, 0, height)
 	for i := 0; i < height; i++ {
-		mazeRow := make([]model.Maze, width)
+		mazeRow := make([]maze.Maze, width)
 		for j := 0; j < width; j++ {
-			mazeType := model.MazeType(rand.Intn(5))
+			mazeType := maze.MazeType(rand.Intn(5))
 			duration := 0
-			if mazeType == model.WrapPoint {
+			if mazeType == maze.WrapPoint {
 				duration = rand.Intn(30)
 			}
-			mazeRow = append(mazeRow, model.Maze{
-				MazeType: mazeType,
-				Duration: duration,
+			mazeRow = append(mazeRow, maze.Maze{
+				MazeType:  mazeType,
+				Duration:  duration,
 				MazeColor: mazeType.GetColor(),
 			})
 		}
-		maze = append(maze, mazeRow)
+		newMaze = append(newMaze, mazeRow)
 	}
-	return maze
+	return newMaze
 }

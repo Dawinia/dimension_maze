@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dimension_maze/model"
+	"dimension_maze/model/role"
 	"fmt"
 )
 
@@ -14,9 +14,9 @@ func main() {
 	//fmt.Println(maze)
 	//fmt.Println(maze.MazeColor == model.White)
 
-	role := model.Role{
-		Pos: [2]int{1, 1},
-		Direction: model.East,
+	role := role.Role{
+		Pos:       [2]int{1, 1},
+		Direction: role.East,
 	}
 	for i := 0; i < 10; i++ {
 		showForTest(role)
@@ -29,7 +29,7 @@ func main() {
 	//model.ShowMaze(maze)
 }
 
-func showForTest(role model.Role) {
+func showForTest(role role.Role) {
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
 			if role.Pos.EqualTo([2]int{i, j}) {

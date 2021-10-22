@@ -1,10 +1,11 @@
-package model
+package role
 
 import "fmt"
 
 type Role struct {
 	Pos pos
 	Direction
+	Dimension
 }
 
 type pos [2]int
@@ -31,6 +32,15 @@ const (
 	North
 )
 
+type Dimension int
+
+const (
+	OneDimensional = iota
+	TwoDimensional
+	ThreeDimensional
+	FourDimensional
+)
+
 func (d Direction) get() [2]int {
 	switch d {
 	case North:
@@ -45,7 +55,6 @@ func (d Direction) get() [2]int {
 		return [2]int{0, 0}
 	}
 }
-
 
 func (d Direction) String() string {
 	switch d {
@@ -76,6 +85,14 @@ func (role *Role) Rotate(clockwise bool) {
 	role.Direction = (role.Direction + 4) % 4
 }
 
-func (role *Role) CurState()  {
+func (role *Role) CurState() {
 
+}
+
+func (role *Role) IncreaseDimension() {
+	role.Dimension++
+}
+
+func (role *Role) DecreaseDimension() {
+	role.Dimension--
 }
